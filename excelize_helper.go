@@ -22,7 +22,7 @@ func peopleExcelize(p ClickHouseProxy) error {
 	categories := map[string]string{"A1": "所在地区", "B1": "总人数", "C1": "最好成绩", "D1": "最差成绩", "E1": "平均成绩"}
 	values := map[string]int{"B2": 2, "C2": 3, "D2": 3, "B3": 5, "C3": 2, "D3": 4, "B4": 6, "C4": 7, "D4": 8}
 	// series := [{"name":"Sheet1!$A$2","categories":"Sheet1!$B$1:$E$1","values":"Sheet1!$B$2:$D$2"},{"name":"Sheet1!$A$3","categories":"Sheet1!$B$1:$E$1","values":"Sheet1!$B$3:$D$3"},{"name":"Sheet1!$A$4","categories":"Sheet1!$B$1:$E$1","values":"Sheet1!$B$4:$D$4"}]
-	series := make([]Series, 0)
+	series := make([]Series, 0) // 还有点问题
 	for i := range rows {
 		rowIdx := i + 2
 		colAkey := fmt.Sprintf("A%d", rowIdx)

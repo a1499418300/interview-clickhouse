@@ -1,16 +1,23 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	p := CSVParser{}
-	e := p.Init("./testdata.csv")
-	if e != nil {
-		fmt.Printf("csv parse init failed, err: %v\n", e)
+	if len(os.Args) > 1 && (os.Args[1] == "load") {
+		// 生成测试数据
+		e := mockTask()
+		fmt.Println("mockTask excute, err: %+v", e)
 		return
 	}
 
-	data := getMockData(1000)
-	p.Write(data)
-	fmt.Println("写入完成")
+	// 以服务运行
+	e := serverInit()
+	if e != nil {
+		fmt.Printf("serverInit failed, err: %+v", e)
+		return
+	}
+	server()
 }

@@ -122,8 +122,8 @@ func queryPeople(p ClickHouseProxy, condition string, pageIdx, pageSize int) ([]
 
 	// 查询总符合条件条数
 	rows, e := p.conn.Query(`
-		SELECT count(1) FROM people where name like ? or area like ? or id = ? or age = ? or score = ? limit ?, ?
-	`, likeStr, likeStr, valInt, valInt, valInt, pageIdx*pageSize, pageSize)
+		SELECT count(1) FROM people where name like ? or area like ? or id = ? or age = ? or score = ?
+	`, likeStr, likeStr, valInt, valInt, valInt)
 	if e != nil {
 		return []People{}, 0, e
 	}
